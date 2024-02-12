@@ -127,7 +127,7 @@ namespace Menu {
 
                 int health = *(int*)(player + Offsets::health);
 
-                if (health <= 0 || health > 100)
+                if (health <= 0 || health > 100) // prevent the line of being active in recently dead players
                     continue;
 
                 // Vec3 headPos = *(Vec3 *)(player + Offsets::headPos);

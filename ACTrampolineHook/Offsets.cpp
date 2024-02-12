@@ -12,4 +12,3 @@ uintptr_t Offsets::health = 0xEC;
 uintptr_t Offsets::playerTeam = 0x30C;
 
 std::vector<uintptr_t> Offsets::currentWeaponAmmo = { 0x364, 0x14, 0x0 };
-// isDead -> localplayer + 318
