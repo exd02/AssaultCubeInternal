@@ -1,6 +1,7 @@
 <h2>Internal Assault Cube (AC) Cheat.</h2>
 
-![image](https://github.com/exd02/AssaultCubeInternal/assets/62575526/58056773-4331-49a3-a9ae-008b8106406b)
+![image](https://github.com/exd02/AssaultCubeInternal/assets/62575526/cb20aa64-745d-496e-a953-c939bc35dcce)
+
 
 <section>
     <h2>Hooking</h2>
