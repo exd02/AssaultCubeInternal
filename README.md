@@ -1,6 +1,6 @@
 <h2>Internal Assault Cube (AC) Cheat.</h2>
 
-![image](https://github.com/exd02/AssaultCubeInternal/assets/62575526/cb20aa64-745d-496e-a953-c939bc35dcce)
+![image](https://github.com/exd02/AssaultCubeInternal/assets/62575526/f9541a70-1cfc-42da-ab15-485c9d67c3f8)
 
 
 <section>
