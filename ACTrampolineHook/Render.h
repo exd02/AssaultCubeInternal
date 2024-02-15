@@ -20,5 +20,8 @@ namespace Render {
 	void SetupOrtho();
 	void RestoreGL();
 	void DrawLine(float x, float y, float x2, float y2, const Color_RGBA& color);
-	Vec2 WorldToScreen(const float* viewMatrix, const Vec3& footPos);
+	void DrawRect(float x, float y, float x2, float y2, const Color_RGBA& color);
+	// void DrawRectOutline(float x, float y, float x2, float y2, const Color_RGBA& color);
+	// Vec2 WorldToScreen(const float* viewMatrix, const Vec3& pos);
+	bool WorldToScreen(const Vec3& pos, Vec3& screen, float matrix[16], const int height, const int width);
 };

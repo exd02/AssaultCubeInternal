@@ -12,9 +12,6 @@ namespace Globals
     extern uintptr_t gameModuleAddress;
     extern uintptr_t recoilFuncAddress;
 
-    extern int screenWidth;
-    extern int screenHeight;
-
     void Init();
 };
 

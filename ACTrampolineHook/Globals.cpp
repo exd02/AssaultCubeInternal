@@ -5,9 +5,6 @@ HMODULE Globals::hGameModule;
 uintptr_t Globals::gameModuleAddress;
 uintptr_t Globals::recoilFuncAddress;
 
-int Globals::screenWidth = 800;
-int Globals::screenHeight = 600;
-
 void Globals::Init()
 {
 	const wchar_t* modName = L"ac_client.exe";

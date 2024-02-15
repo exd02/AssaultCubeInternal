@@ -9,8 +9,10 @@
 #include "Offsets.h"
 #include "Globals.h"
 #include "Render.h"
-#include "Player.h"
 #include "Vec.h"
+#include "ESP.h"
+#include "Telekill.h"
+#include "Aimbot.h"
 
 #define CMD_COLOR_RED       12 
 #define CMD_COLOR_GREEN     10 
@@ -19,7 +21,9 @@
 #define OPT_FREEZEHEALTH    0
 #define OPT_FREEZEAMMO      1
 #define OPT_NORECOIL        2
-#define OPT_ESPLINE         3
+#define OPT_ESP             3
+#define OPT_AIM             4
+#define OPT_TELEKILL        5
 
 namespace Menu {
 
@@ -32,7 +36,9 @@ namespace Menu {
         { false, "Freeze Health (F1)" },// 0
         { false, "Freeze Ammo (F2)" },  // 1
         { false, "NoRecoil (F3)" },     // 2
-        { false, "ESP Line (F4)" }      // 3
+        { false, "ESP Line (F4)" },     // 3
+        { false, "Aimbot (F5)" },        // 4
+        { false, "Telekill (F6)" }      // 5
     };
 
     void SetConsoleColor(int color) {
@@ -57,7 +63,7 @@ namespace Menu {
             std::cout << "] " << o.description << std::endl;
         }
     }
-    
+
     void HandleInput()
     {
         bool hasChanged = false;
@@ -93,13 +99,25 @@ namespace Menu {
 
         if (GetAsyncKeyState(VK_F4) & 1)
         {
-            menuOptions[OPT_ESPLINE].status = !menuOptions[OPT_ESPLINE].status;
+            menuOptions[OPT_ESP].status = !menuOptions[OPT_ESP].status;
+            hasChanged = true;
+        }
+
+        if (GetAsyncKeyState(VK_F5) & 1)
+        {
+            menuOptions[OPT_AIM].status = !menuOptions[OPT_AIM].status;
+            hasChanged = true;
+        }
+
+        if (GetAsyncKeyState(VK_F6) & 1)
+        {
+            menuOptions[OPT_TELEKILL].status = !menuOptions[OPT_TELEKILL].status;
             hasChanged = true;
         }
 
         if (menuOptions[OPT_FREEZEHEALTH].status) {
-            uintptr_t localPlayerAddress = *(uintptr_t *)(Globals::gameModuleAddress + Offsets::localPlayer);
-            int* health = (int *)(localPlayerAddress + Offsets::health);
+            uintptr_t localPlayerAddress = *(uintptr_t*)(Globals::gameModuleAddress + Offsets::localPlayer);
+            int* health = (int*)(localPlayerAddress + Offsets::health);
             *health = 1337;
         }
 
@@ -109,42 +127,21 @@ namespace Menu {
             *ammo = 1337;
         }
 
-        if (menuOptions[OPT_ESPLINE].status)
+        if (menuOptions[OPT_ESP].status)
         {
             Render::SetupOrtho();
-
-            uintptr_t localPlayer = *(uintptr_t*)(Globals::gameModuleAddress + Offsets::localPlayer);
-            int currentPlayers = *(int *)(Globals::gameModuleAddress + Offsets::currentPlayers);
-            uintptr_t entityList = *(uintptr_t *)(Globals::gameModuleAddress + Offsets::entityList);
-
-            float v[16]{ 0 };
-            memcpy(v, (void *)(Globals::gameModuleAddress + Offsets::viewMatrix), 16 * sizeof(float));
-
-            // for loop all players
-            for (int i = 1; i < currentPlayers; i++)
-            {
-                uintptr_t player = *(uintptr_t *)(entityList + (4 * i));
-
-                int health = *(int*)(player + Offsets::health);
-
-                if (health <= 0 || health > 100) // prevent the line of being active in recently dead players
-                    continue;
-
-                // Vec3 headPos = *(Vec3 *)(player + Offsets::headPos);
-                Vec3 footPos = *(Vec3*)(player + Offsets::footPos);
-
-                int team = *(int*)(player + Offsets::playerTeam);
-                int localPlayerTeam = *(int*)(localPlayer + Offsets::playerTeam);
-
-                Render::Color_RGBA lineColor = (team == localPlayerTeam) ? Render::blue : Render::red;
-
-                Vec2 screenCordinates = Render::WorldToScreen(v, footPos);
-
-                if (screenCordinates.x != -1.0f && screenCordinates.y != -1.0f) // if it's not behing the camera
-                    Render::DrawLine(Globals::screenWidth/2, Globals::screenHeight, screenCordinates.x, screenCordinates.y, lineColor);
-            }
-
+            ESP::Draw();
             Render::RestoreGL();
+        }
+
+        if (menuOptions[OPT_AIM].status)
+        {
+            Aimbot::Aimbot();
+        }
+
+        if (menuOptions[OPT_TELEKILL].status)
+        {
+            Telekill::Telekill();
         }
 
         if (hasChanged)

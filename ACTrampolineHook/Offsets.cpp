@@ -8,6 +8,8 @@ uintptr_t Offsets::viewMatrix = 0x17DFD0;
 
 uintptr_t Offsets::headPos = 0x4;
 uintptr_t Offsets::footPos = 0x28;
+uintptr_t Offsets::scrnX = 0x34;
+uintptr_t Offsets::scrnY = 0x38;
 uintptr_t Offsets::health = 0xEC;
 uintptr_t Offsets::playerTeam = 0x30C;
 

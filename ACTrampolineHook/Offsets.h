@@ -11,6 +11,8 @@ namespace Offsets {
 
     extern uintptr_t headPos;
     extern uintptr_t footPos;
+    extern uintptr_t scrnX;
+    extern uintptr_t scrnY;
     extern uintptr_t health;
     extern uintptr_t playerTeam;
 

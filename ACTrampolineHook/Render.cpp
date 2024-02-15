@@ -27,9 +27,9 @@ void Render::RestoreGL()
 	glPopAttrib();
 }
 
-void Render::DrawLine(float x, float y, float x2, float y2, const Color_RGBA& lineColor)
+void Render::DrawLine(float x, float y, float x2, float y2, const Color_RGBA& color)
 {
-	glColor4f(lineColor.r, lineColor.g, lineColor.b, lineColor.a);
+	glColor4f(color.r, color.g, color.b, color.a);
 
 	glBegin(GL_LINES);
 		glVertex2f(x ,  y);
@@ -37,25 +37,41 @@ void Render::DrawLine(float x, float y, float x2, float y2, const Color_RGBA& li
 	glEnd();
 }
 
-Vec2 Render::WorldToScreen(const float* viewMatrix, const Vec3& footPos) {
-	// transform footposition to screen cordinates using viewmatrix
-	float transformedX = viewMatrix[0] * footPos.x + viewMatrix[4] * footPos.y + viewMatrix[8] * footPos.z + viewMatrix[12];
-	float transformedY = viewMatrix[1] * footPos.x + viewMatrix[5] * footPos.y + viewMatrix[9] * footPos.z + viewMatrix[13];
-	float transformedZ = viewMatrix[2] * footPos.x + viewMatrix[6] * footPos.y + viewMatrix[10] * footPos.z + viewMatrix[14];
-	float transformedW = viewMatrix[3] * footPos.x + viewMatrix[7] * footPos.y + viewMatrix[11] * footPos.z + viewMatrix[15];
+void Render::DrawRect(float x, float y, float x2, float y2, const Color_RGBA& color)
+{
+	glColor4f(color.r, color.g, color.b, color.a);
 
-	// return if behind the camera
-	if (transformedZ < 0.0f)
-		return Vec2(-1.0f, -1.0f);
+	glBegin(GL_LINE_LOOP);
+		glVertex2f(x, y);
+		glVertex2f(x2, y);
+		glVertex2f(x2, y2);
+		glVertex2f(x, y2);
+	glEnd();
+}
 
-	// perspective projection
-	transformedX /= transformedW;
-	transformedY /= transformedW;
+bool Render::WorldToScreen(const Vec3 &pos, Vec3& screen, float matrix[16], const int width, const int height)
+{
+	Vec4 clipCoords;
 
-	Vec2 screenPos;
+	clipCoords.x = matrix[0] * pos.x + matrix[4] * pos.y + matrix[8] * pos.z + matrix[12];
+	clipCoords.y = matrix[1] * pos.x + matrix[5] * pos.y + matrix[9] * pos.z + matrix[13];
+	clipCoords.z = matrix[2] * pos.x + matrix[6] * pos.y + matrix[10] * pos.z + matrix[14];
+	clipCoords.w = matrix[3] * pos.x + matrix[7] * pos.y + matrix[11] * pos.z + matrix[15];
 
-	screenPos.x = (transformedX + 1.0f) * 0.5f * Globals::screenWidth;
-	screenPos.y = (1.0f - transformedY) * 0.5f * Globals::screenHeight;
+	// if it's inside or behind you
+	if (clipCoords.w < 0.1f)
+	{
+		return false;
+	}
 
-	return screenPos;
+	Vec3 NDC;
+	NDC.x = clipCoords.x / clipCoords.w;
+	NDC.y = clipCoords.y / clipCoords.w;
+	NDC.z = clipCoords.z / clipCoords.w;
+
+	// modify the screen cordinates passed by reference
+	screen.x = (width / 2 * NDC.x) + (NDC.x + width / 2);
+	screen.y = -(height / 2 * NDC.y) + (NDC.y + height / 2);
+
+	return true;
 }
