@@ -38,8 +38,8 @@
             <h4>ViewMatrix:</h4>
             <ul>
                 <li><a href="https://siware.dev/009-transformation-notes/">Website explaining ViewMatrix Math</a></li>
-                <li><a href="https://youtu.be/-WL1Gpe9VRo">Finding your ViewMatrix in AssaultCube</a></li>
-                <li><a href="https://youtu.be/crT9zGviqVs">Finding your ViewMatrix in CS:GO</a></li>
+                <li><a href="https://youtu.be/-WL1Gpe9VRo">Finding your ViewMatrix in AssaultCube (GH - Rake)</a></li>
+                <li><a href="https://youtu.be/crT9zGviqVs">Finding your ViewMatrix in CS:GO (GH - Rake)</a></li>
             </ul>
         </li>
         <li>
@@ -48,15 +48,15 @@
                 <li><a href="https://youtu.be/TCu0qSivXUc">Finding EntityList in Assault Cube (GH - Rake)</a></li>
                 <li><a href="https://youtu.be/-wYVIJWhPDM">Finding EntityList in Assault Cube (Green Eyes)</a></li>
                 <li><a href="https://youtu.be/aYN7IjGubuY">Finding EntityList in Skyrim (GH - Icew0lf)</a></li>
-                <li><a href="https://youtu.be/oXlOboQURy0">Finding EntityList in CS:GO (GH - Rake)</a></li>
+                <li><a href="https://youtu.be/oXlOboQURy0">Finding EntityList in CS:GO (GH - Rake)</a></li> *(interesting to see, it's a linked list)
             </ul>
         </li>
         <li>
             <h4>ESP with OpenGL:</h4>
             <ul>
-                <li><a href="https://youtu.be/dEgva5-OsSY">Drawing inside AC (1/3)</a></li>
-                <li><a href="https://youtu.be/6JV0dmLWMNs">Drawing inside AC (2/3)</a></li>
-                <li><a href="https://youtu.be/kGDKQXgxIrY">Making an ESP (3/3)</a></li>
+                <li><a href="https://youtu.be/dEgva5-OsSY">Drawing inside AC (GH - Rake 1/3)</a></li>
+                <li><a href="https://youtu.be/6JV0dmLWMNs">Drawing inside AC (GH - Rake 2/3)</a></li>
+                <li><a href="https://youtu.be/kGDKQXgxIrY">Making an ESP (GH - Rake 3/3)</a></li>
             </ul>
         </li>
     </ol>
