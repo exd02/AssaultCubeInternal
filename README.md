@@ -48,7 +48,7 @@
                 <li><a href="https://youtu.be/TCu0qSivXUc">Finding EntityList in Assault Cube (GH - Rake)</a></li>
                 <li><a href="https://youtu.be/-wYVIJWhPDM">Finding EntityList in Assault Cube (Green Eyes)</a></li>
                 <li><a href="https://youtu.be/aYN7IjGubuY">Finding EntityList in Skyrim (GH - Icew0lf)</a></li>
-                <li><a href="https://youtu.be/oXlOboQURy0">Finding EntityList in CS:GO (GH - Rake)</a></li> *(interesting to see, it's a linked list)
+                <li><a href="https://youtu.be/oXlOboQURy0">Finding EntityList in CS:GO (GH - Rake)</a> *(interesting to see, it's a linked list)</li> 
             </ul>
         </li>
         <li>
