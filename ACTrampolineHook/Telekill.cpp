@@ -1,5 +1,7 @@
 #include "Telekill.h"
 
+Vec3 Telekill::originalPosition{ 0 };
+
 void Telekill::Telekill()
 {
     Player* localPlayer = *(Player**)(Globals::gameModuleAddress + Offsets::localPlayer);

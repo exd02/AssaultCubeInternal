@@ -18,6 +18,9 @@ void ESP::Draw()
         
         if (p == nullptr)
             continue;
+
+        if (p->isDead)
+            continue;
         
         Render::Color_RGBA color = localPlayer->team == p->team ? Render::green : Render::red;
 

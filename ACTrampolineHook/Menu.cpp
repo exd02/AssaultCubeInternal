@@ -36,8 +36,8 @@ namespace Menu {
         { false, "Freeze Health (F1)" },// 0
         { false, "Freeze Ammo (F2)" },  // 1
         { false, "NoRecoil (F3)" },     // 2
-        { false, "ESP Line (F4)" },     // 3
-        { false, "Aimbot (F5)" },        // 4
+        { false, "ESP (F4)" },          // 3
+        { false, "Aimbot (F5)" },       // 4
         { false, "Telekill (F6)" }      // 5
     };
 
@@ -113,6 +113,21 @@ namespace Menu {
         {
             menuOptions[OPT_TELEKILL].status = !menuOptions[OPT_TELEKILL].status;
             hasChanged = true;
+
+            Player* localPlayer = *(Player**)(Globals::gameModuleAddress + Offsets::localPlayer);
+
+            if (menuOptions[OPT_TELEKILL].status)
+            {
+                // save the current position
+                if (!localPlayer->isDead)
+                    Telekill::originalPosition = localPlayer->footPos;
+            }
+            else
+            {
+                // teleport the player back to where he was
+                if (!localPlayer->isDead)
+                    localPlayer->footPos = Telekill::originalPosition;
+            }
         }
 
         if (menuOptions[OPT_FREEZEHEALTH].status) {
