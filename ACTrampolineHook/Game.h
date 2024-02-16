@@ -50,7 +50,7 @@ public:
 		DEFINE_MEMBER_N(int16_t, viewmodelRecoil, 0x005C);
 		DEFINE_MEMBER_N(int16_t, recoilFirst3Shots, 0x0060);
 		DEFINE_MEMBER_N(int16_t, recoilAfter3Shots, 0x0062);
-		DEFINE_MEMBER_N(int16_t, isAuto, 0x0068);
+		DEFINE_MEMBER_N(int16_t, isAuto, 0x0066);
 	};
 };
 

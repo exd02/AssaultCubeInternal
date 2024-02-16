@@ -24,6 +24,7 @@
 #define OPT_ESP             3
 #define OPT_AIM             4
 #define OPT_TELEKILL        5
+#define OPT_MAGICBULLET     6
 
 namespace Menu {
 
@@ -38,7 +39,8 @@ namespace Menu {
         { false, "NoRecoil (F3)" },     // 2
         { false, "ESP (F4)" },          // 3
         { false, "Aimbot (F5)" },       // 4
-        { false, "Telekill (F6)" }      // 5
+        { false, "Telekill (F6)" },      // 5
+        { false, "MagicBullet (F7)" }   // 6
     };
 
     void SetConsoleColor(int color) {
@@ -128,6 +130,14 @@ namespace Menu {
                 if (!localPlayer->isDead)
                     localPlayer->footPos = Telekill::originalPosition;
             }
+        }
+
+        if (GetAsyncKeyState(VK_F7) & 1)
+        {
+            menuOptions[OPT_MAGICBULLET].status = !menuOptions[OPT_MAGICBULLET].status;
+            hasChanged = true;
+
+            // the magic bullet implementation is inside the aimbot because we need a target to spawn the bullet inside the enemy head
         }
 
         if (menuOptions[OPT_FREEZEHEALTH].status) {

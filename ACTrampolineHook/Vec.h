@@ -46,6 +46,12 @@ struct Vec3
         float distanceZ = otherPoint.z - z;
         return std::sqrt(distanceX * distanceX + distanceY * distanceY + distanceZ * distanceZ);
     }
+
+    float CalcHipotenusa()
+    {
+        float squaresum = x*x + y*y + z*z;
+        return sqrt(squaresum);
+    }
 };
 
 struct Vec2
