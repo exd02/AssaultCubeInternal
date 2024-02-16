@@ -4,38 +4,10 @@ void MagicBullet::MagicBullet()
 {
     Player* localPlayer = *(Player**)(Globals::gameModuleAddress + Offsets::localPlayer);
 
-    if (localPlayer->isDead)
+    if (!localPlayer || localPlayer->isDead)
         return;
 
-    int* currentPlayers = (int*)(Globals::gameModuleAddress + Offsets::currentPlayers);
-
-    uintptr_t entityList = *(uintptr_t*)(Globals::gameModuleAddress + Offsets::entityList);
-
-    // the target is the closest player
-    float closestDistance = FLT_MAX;
-    Player* target = nullptr;
-    for (int i = 1; i < *currentPlayers; i++)
-    {
-        Player* p = *(Player**)(entityList + (4 * i));
-
-        if (p == nullptr)
-            continue;
-
-        if (p->isDead)
-            continue;
-
-        if (localPlayer->team == p->team)
-            continue;
-
-        float distance = localPlayer->headPos.Distance(p->headPos);
-        if (distance < closestDistance)
-        {
-            closestDistance = distance;
-            target = p;
-        }
-
-        break;
-    }
+    Player* target = localPlayer->GetClosestEnemy();
 
     if (target == nullptr)
         return;
