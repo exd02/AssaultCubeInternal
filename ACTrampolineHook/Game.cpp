@@ -30,3 +30,42 @@ bool Player::IsValid()
 
     return true;
 }
+
+Player* Player::GetClosestEnemy()
+{
+    Player* localPlayer = *(Player**)(Globals::gameModuleAddress + Offsets::localPlayer);
+
+    if (!localPlayer || localPlayer->isDead)
+        return nullptr;
+
+    int* currentPlayers = (int*)(Globals::gameModuleAddress + Offsets::currentPlayers);
+
+    uintptr_t entityList = *(uintptr_t*)(Globals::gameModuleAddress + Offsets::entityList);
+
+    float closestDistance = FLT_MAX;
+    Player* target = nullptr;
+    for (int i = 1; i < *currentPlayers; i++)
+    {
+        Player* p = *(Player**)(entityList + (4 * i));
+
+        if (p == nullptr)
+            continue;
+
+        if (p->isDead)
+            continue;
+
+        if (localPlayer->team == p->team)
+            continue;
+
+        float distance = localPlayer->headPos.Distance(p->headPos);
+        if (distance < closestDistance)
+        {
+            closestDistance = distance;
+            target = p;
+        }
+
+        break;
+    }
+
+    return target;
+}

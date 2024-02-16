@@ -25,6 +25,7 @@
 #define OPT_AIM             4
 #define OPT_TELEKILL        5
 #define OPT_MAGICBULLET     6
+#define OPT_TRIGGERBOT      7
 
 namespace Menu {
 
@@ -33,14 +34,16 @@ namespace Menu {
         const std::string description;
     };
 
+    // I should have used a class but it's too late now xD
     std::vector<MenuOption> menuOptions = {
         { false, "Freeze Health (F1)" },// 0
         { false, "Freeze Ammo (F2)" },  // 1
         { false, "NoRecoil (F3)" },     // 2
         { false, "ESP (F4)" },          // 3
         { false, "Aimbot (F5)" },       // 4
-        { false, "Telekill (F6)" },      // 5
-        { false, "MagicBullet (F7)" }   // 6
+        { false, "Telekill (F6)" },     // 5
+        { false, "MagicBullet (F7)" },   // 6
+        { false, "TriggetBot (F8)" }   // 7
     };
 
     void SetConsoleColor(int color) {
@@ -69,6 +72,7 @@ namespace Menu {
     void HandleInput()
     {
         bool hasChanged = false;
+        Player* localPlayer = *(Player**)(Globals::gameModuleAddress + Offsets::localPlayer);
 
         if (GetAsyncKeyState(VK_F1) & 1)
         {
@@ -116,8 +120,6 @@ namespace Menu {
             menuOptions[OPT_TELEKILL].status = !menuOptions[OPT_TELEKILL].status;
             hasChanged = true;
 
-            Player* localPlayer = *(Player**)(Globals::gameModuleAddress + Offsets::localPlayer);
-
             if (menuOptions[OPT_TELEKILL].status)
             {
                 // save the current position
@@ -136,20 +138,22 @@ namespace Menu {
         {
             menuOptions[OPT_MAGICBULLET].status = !menuOptions[OPT_MAGICBULLET].status;
             hasChanged = true;
-
-            // the magic bullet implementation is inside the aimbot because we need a target to spawn the bullet inside the enemy head
         }
 
-        if (menuOptions[OPT_FREEZEHEALTH].status) {
-            uintptr_t localPlayerAddress = *(uintptr_t*)(Globals::gameModuleAddress + Offsets::localPlayer);
-            int* health = (int*)(localPlayerAddress + Offsets::health);
-            *health = 1337;
+        if (GetAsyncKeyState(VK_F8) & 1)
+        {
+            menuOptions[OPT_TRIGGERBOT].status = !menuOptions[OPT_TRIGGERBOT].status;
+            hasChanged = true;
         }
 
-        if (menuOptions[OPT_FREEZEAMMO].status) {
-            uintptr_t localPlayerAddress = *(uintptr_t*)(Globals::gameModuleAddress + Offsets::localPlayer);
-            int* ammo = (int*)(Memory::FindDMAAddy(localPlayerAddress, Offsets::currentWeaponAmmo));
-            *ammo = 1337;
+        if (menuOptions[OPT_FREEZEHEALTH].status)
+        {
+            localPlayer->health = 1337;
+        }
+
+        if (menuOptions[OPT_FREEZEAMMO].status)
+        {
+            *(int*)localPlayer->currWeapon->ammo = 1337;
         }
 
         if (menuOptions[OPT_ESP].status)

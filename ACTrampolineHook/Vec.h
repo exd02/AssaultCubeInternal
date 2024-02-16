@@ -41,10 +41,10 @@ struct Vec3
 
     float Distance(const Vec3& otherPoint) const
     {
-        float distanceX = otherPoint.x - x;
-        float distanceY = otherPoint.y - y;
-        float distanceZ = otherPoint.z - z;
-        return std::sqrt(distanceX * distanceX + distanceY * distanceY + distanceZ * distanceZ);
+        float dx = otherPoint.x - x;
+        float dy = otherPoint.y - y;
+        float dz = otherPoint.z - z;
+        return std::sqrt(dx * dx + dy * dy + dz * dz);
     }
 
     float CalcHipotenusa()

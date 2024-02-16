@@ -3,6 +3,8 @@
 #include <Windows.h>
 #include <iostream>
 #include "Vec.h"
+#include "Globals.h"
+#include "Offsets.h"
 
 #define STR_MERGE_IMPL(a, b) a##b
 #define STR_MERGE(a, b) STR_MERGE_IMPL(a, b)
@@ -83,6 +85,7 @@ public:
 	};
 
 	bool IsValid();
+	Player* GetClosestEnemy();
 };
 
 namespace Game {
