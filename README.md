@@ -85,7 +85,7 @@
         <li>
             <h4>Coding a better aimbot:</h4>
             <ul>
-                <li><a href="https://www.unknowncheats.me/forum/counterstrike-global-offensive/137492-math-behind-hack-1-coding-better-aimbot-stop-using-calcangle.html">Better Aimbot (UnknownCheats - InvokeStatic)</a></li> (my favorite)
+                <li><a href="https://www.unknowncheats.me/forum/counterstrike-global-offensive/137492-math-behind-hack-1-coding-better-aimbot-stop-using-calcangle.html">Better Aimbot (UnknownCheats - InvokeStatic)</a> (my favorite)</li>
             </ul>
         </li>
     </ol>
