@@ -123,14 +123,18 @@ namespace Menu {
             if (menuOptions[OPT_TELEKILL].status)
             {
                 // save the current position
-                if (!localPlayer->isDead)
-                    Telekill::originalPosition = localPlayer->footPos;
+                if (localPlayer && !localPlayer->isDead)
+                    Telekill::originalPosition = localPlayer->pos;
             }
             else
             {
                 // teleport the player back to where he was
-                if (!localPlayer->isDead)
-                    localPlayer->footPos = Telekill::originalPosition;
+                if (localPlayer && !localPlayer->isDead)
+                {
+                    if (Telekill::originalPosition.x != 0.f || Telekill::originalPosition.y != 0.f || Telekill::originalPosition.z != 0.f)
+                        localPlayer->pos = Telekill::originalPosition;
+                }
+                    
             }
         }
 
@@ -153,7 +157,7 @@ namespace Menu {
 
         if (menuOptions[OPT_FREEZEAMMO].status)
         {
-            *(int*)localPlayer->currWeapon->ammo = 1337;
+            *localPlayer->currWeapon->ammo = 1337;
         }
 
         if (menuOptions[OPT_ESP].status)

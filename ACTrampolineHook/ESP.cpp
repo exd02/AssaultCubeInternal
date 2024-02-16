@@ -27,7 +27,7 @@ void ESP::Draw()
         Vec3 screenHead{ 0 };
         Vec3 screenFoot{ 0 };
 
-        if (Render::WorldToScreen(p->footPos, screenFoot, matrix, viewport[2], viewport[3]) && Render::WorldToScreen(p->headPos, screenHead, matrix, viewport[2], viewport[3]))
+        if (Render::WorldToScreen(p->pos, screenFoot, matrix, viewport[2], viewport[3]) && Render::WorldToScreen(p->headPos, screenHead, matrix, viewport[2], viewport[3]))
         {
             float boxHeight = screenHead.y - screenFoot.y;
             float boxWidth = boxHeight / 2.f;

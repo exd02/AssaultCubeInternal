@@ -75,9 +75,10 @@ public:
 	union {
 		DEFINE_MEMBER_N(Vector3, headPos, 0x0004);
 		DEFINE_MEMBER_N(Vector3, speed, 0x0010);
-		DEFINE_MEMBER_N(Vector3, footPos, 0x0028);
+		DEFINE_MEMBER_N(Vector3, pos, 0x0028);
 		DEFINE_MEMBER_N(Vector3, cameraAngles, 0x0034);
 		DEFINE_MEMBER_N(int, health, 0x00EC);
+		DEFINE_MEMBER_N(int8_t, bAttacking, 0x0204);
 		// DEFINE_MEMBER_N(char[15], name, 0x0205);
 		DEFINE_MEMBER_N(int, team, 0x030C);
 		DEFINE_MEMBER_N(int, isDead, 0x0318);

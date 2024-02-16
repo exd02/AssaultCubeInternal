@@ -57,14 +57,13 @@ Player* Player::GetClosestEnemy()
         if (localPlayer->team == p->team)
             continue;
 
-        float distance = localPlayer->headPos.Distance(p->headPos);
+        float distance = localPlayer->pos.Distance(p->pos);
+
         if (distance < closestDistance)
         {
             closestDistance = distance;
             target = p;
         }
-
-        break;
     }
 
     return target;

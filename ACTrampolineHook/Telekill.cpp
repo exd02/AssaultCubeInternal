@@ -35,5 +35,5 @@ void Telekill::Telekill()
     if (target == nullptr)
         return;
 
-    localPlayer->footPos = target->footPos;
+    localPlayer->pos = target->pos;
 }

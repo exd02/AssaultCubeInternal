@@ -1,6 +1,6 @@
 ﻿#include "Aimbot.h"
 
-#define M_PI   3.14159265358979323846264338327950288
+#define M_PI 3.14159265358979323846264338327950288
 
 void Aimbot::Aimbot()
 {
@@ -33,6 +33,5 @@ void Aimbot::Aimbot()
     float y = atan2(delta.z, delta.CalcHipotenusa()); // [-π/2 ~ +π/2]
     y *= 180 / M_PI; // [-90° ~ +90°]
 
-    localPlayer->cameraAngles.x = x;
-    localPlayer->cameraAngles.y = y;
+    localPlayer->cameraAngles = { x, y };
 }
