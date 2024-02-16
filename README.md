@@ -70,7 +70,7 @@
         <li>
             <h4>Math and code Aimbot:</h4>
             <ul>
-                <li><a href="https://youtu.be/sDd8aBCCBbA">CSGO Aimbot Tutorial & CalcAngle Explained (GH - BDKPlayer)</a></li
+                <li><a href="https://youtu.be/sDd8aBCCBbA">CSGO Aimbot Tutorial & CalcAngle Explained (GH - BDKPlayer)</a></li>
                 <li><a href="https://youtu.be/k8zx_u22dkk">Math behind calculating the view angles (Swedz)</a></li>
                 <li><a href="https://youtu.be/0oSo_khxaBk">Aimbot Trigonometry and code (Green Eyes)</a></li>
             </ul>
@@ -85,7 +85,7 @@
         <li>
             <h4>Coding a better aimbot:</h4>
             <ul>
-                <li><a href="https://www.unknowncheats.me/forum/counterstrike-global-offensive/137492-math-behind-hack-1-coding-better-aimbot-stop-using-calcangle.html">Better Aimbot (UnknownCheats - InvokeStatic)</a></li>
+                <li><a href="https://www.unknowncheats.me/forum/counterstrike-global-offensive/137492-math-behind-hack-1-coding-better-aimbot-stop-using-calcangle.html">Better Aimbot (UnknownCheats - InvokeStatic)</a> (my favorite)</li>
             </ul>
         </li>
     </ol>
