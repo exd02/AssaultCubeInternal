@@ -29,9 +29,9 @@ void __fastcall RayDmg_Hook(Vec3* from, Vec3* to, Player* attacker)
         Player* target = attacker->GetClosestEnemy();
         if (target)
         {
-            from->x = attacker->headPos.x;
-            from->y = attacker->headPos.y;
-            from->z = attacker->headPos.z;
+            from->x = target->headPos.x;
+            from->y = target->headPos.y;
+            from->z = target->headPos.z;
 
             #ifdef _DEBUG
                 std::cout << "\t[-] New From: " << from->ToString() << std::endl;
