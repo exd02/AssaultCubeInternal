@@ -2,6 +2,7 @@
 
 #include <Windows.h>
 #include <iostream>
+
 #include "Vec.h"
 #include "Globals.h"
 #include "Offsets.h"

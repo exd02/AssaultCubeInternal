@@ -64,6 +64,30 @@ Hook::Hook(const char* exportName, const char* modName, BYTE* dst, BYTE* PtrToGa
     this->PtrToGatewayFnPtr = PtrToGatewayFnPtr;
 }
 
+Hook::Hook(BYTE* src, BYTE* dst, BYTE* PtrToGatewayFnPtr, uintptr_t len)
+{
+    this->src = src;
+    this->dst = dst;
+    this->len = len;
+    this->PtrToGatewayFnPtr = PtrToGatewayFnPtr;
+}
+
+Hook::Hook()
+{
+    this->src = NULL;
+    this->dst = NULL;
+    this->len = 0;
+    this->PtrToGatewayFnPtr = NULL;
+}
+
+void Hook::Init(BYTE* src, BYTE* dst, BYTE* PtrToGatewayFnPtr, uintptr_t len)
+{
+    this->src = src;
+    this->dst = dst;
+    this->len = len;
+    this->PtrToGatewayFnPtr = PtrToGatewayFnPtr;
+}
+
 void Hook::Enable()
 {
     memcpy(originalBytes, src, len);

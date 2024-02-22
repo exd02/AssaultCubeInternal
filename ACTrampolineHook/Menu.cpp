@@ -1,19 +1,5 @@
 #include "Menu.h"
 
-#include <Windows.h>
-#include <iostream>
-#include <vector>
-
-#include "Globals.h"
-#include "Memory.h"
-#include "Offsets.h"
-#include "Globals.h"
-#include "Render.h"
-#include "Vec.h"
-#include "ESP.h"
-#include "Telekill.h"
-#include "Aimbot.h"
-
 #define CMD_COLOR_RED       12 
 #define CMD_COLOR_GREEN     10 
 #define CMD_COLOR_DEFAULT   7  
@@ -25,7 +11,6 @@
 #define OPT_AIM             4
 #define OPT_TELEKILL        5
 #define OPT_MAGICBULLET     6
-#define OPT_TRIGGERBOT      7
 
 namespace Menu {
 
@@ -43,7 +28,6 @@ namespace Menu {
         { false, "Aimbot (F5)" },       // 4
         { false, "Telekill (F6)" },     // 5
         { false, "MagicBullet (F7)" },   // 6
-        { false, "TriggetBot (F8)" }   // 7
     };
 
     void SetConsoleColor(int color) {
@@ -142,12 +126,15 @@ namespace Menu {
         {
             menuOptions[OPT_MAGICBULLET].status = !menuOptions[OPT_MAGICBULLET].status;
             hasChanged = true;
-        }
 
-        if (GetAsyncKeyState(VK_F8) & 1)
-        {
-            menuOptions[OPT_TRIGGERBOT].status = !menuOptions[OPT_TRIGGERBOT].status;
-            hasChanged = true;
+            if (menuOptions[OPT_MAGICBULLET].status)
+            {
+                MagicBullet::hkRayDmg.Enable();
+            }
+            else
+            {
+                MagicBullet::hkRayDmg.Disable();
+            }
         }
 
         if (menuOptions[OPT_FREEZEHEALTH].status)

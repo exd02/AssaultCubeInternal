@@ -1,6 +1,6 @@
 #include "Game.h"
 
-int Game::gameMode = 0; // tdm for now XD
+int Game::gameMode = 0; // do it later - dword_58ABF8
 
 bool Game::GamemodeHasTeammates()
 {

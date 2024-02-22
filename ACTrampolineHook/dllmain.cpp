@@ -4,10 +4,11 @@
 
 #include "Memory.h"
 #include "Hook.h"
-#include "Menu.h"
 #include "Offsets.h"
 #include "Globals.h"
 #include "Render.h"
+#include "Menu.h"
+#include "MagicBullet.h"
 
 typedef BOOL(__stdcall* twglSwapBuffers)(HDC hDC);
 
@@ -59,9 +60,7 @@ DWORD WINAPI HackThread(HMODULE hModule)
     SetupConsole();
     
     Globals::Init();
-
-    std::cout << std::endl;
-
+    MagicBullet::InitHook();
     Menu::Print();
     
     Hook swapBuffersHook("wglSwapBuffers", "opengl32.dll", (BYTE*)hkwglSwapBuffers, (BYTE*)&wglSwapBuffersGateway, 5);
